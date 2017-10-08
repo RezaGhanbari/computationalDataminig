@@ -39,14 +39,9 @@ users = {"Angelica": {"Blues Traveler": 3.5, "Broken Bells": 2.0,
 
 
 class Recommender:
-    def __init__(self, data={}, k=1, metric='pearson', n=5):
-        """ initialize recommender
-        currently, if data is dictionary the recommender is initialized
-        to it.
-        For all other data types of data, no initialization occurs
-        k is the k value for k nearest neighbor
-        metric is which distance formula to use
-        n is the maximum number of recommendations to make"""
+    def __init__(self, data=None, k=1, metric='pearson', n=5):
+        if data is None:
+            data = {}
         self.k = k
         self.n = n
         self.username2id = {}
@@ -54,8 +49,15 @@ class Recommender:
         self.productid2name = {}
         # for some reason I want to save the name of the metric
         self.metric = metric
-        if self.metric == 'pearson':
+        if self.metric == 'manhattan':
+            self.fn = self.manhattan
+        elif self.metric == 'euclidean':
+            self.fn = self.euclidean
+        elif self.metric == 'pearson':
             self.fn = self.pearson
+        elif self.metric == 'cosine_similarity':
+            self.fn = self.cosine_similarity
+
         #
         # if data is dictionary set recommender data to it
         #
@@ -149,6 +151,31 @@ class Recommender:
         f.close()
         print(i)
 
+    def manhattan(self, rating1, rating2):
+        distance = 0
+        commonRatings = False
+        for key in rating1:
+            if key in rating2:
+                distance += abs(rating1[key] - rating2[key])
+                commonRatings = True
+        if commonRatings:
+            return distance
+        else:
+            return -1
+
+    def euclidean(self, rating1, rating2, r=2):
+        distance = 0
+        commonRatings = False
+        for key in rating1:
+            if key in rating2:
+                distance += pow(abs(rating1[key] - rating2[key]), r)
+            commonRatings = True
+
+        if commonRatings:
+            return pow(distance, 1 / r)
+        else:
+            return 0  # Indicates no ratings in common
+
     def pearson(self, rating1, rating2):
         sum_xy = 0
         sum_x = 0
@@ -176,6 +203,20 @@ class Recommender:
         else:
             return (sum_xy - (sum_x * sum_y) / n) / denominator
 
+    def cosine_similarity(self, rating1, rating2):
+        distance = 0
+        commonRatings = False
+
+        for key in rating1:
+            if key in rating2 and not key == 'nan':
+                from sklearn.metrics.pairwise import cosine_similarity
+                distance = cosine_similarity(rating1[key], rating2[key])
+                commonRatings = True
+        if commonRatings:
+            return distance
+        else:
+            return -1
+
     def computeNearestNeighbor(self, username):
         """creates a sorted list of users based on their distance to
         username"""
@@ -185,7 +226,6 @@ class Recommender:
                 distance = self.fn(self.data[username],
                                    self.data[instance])
                 distances.append((instance, distance))
-        # sort based on distance -- closest first
         distances.sort(key=lambda artistTuple: artistTuple[1],
                        reverse=True)
         return distances
@@ -193,28 +233,17 @@ class Recommender:
     def recommend(self, user):
         """Give list of recommendations"""
         recommendations = {}
-        # first get list of users  ordered by nearness
         nearest = self.computeNearestNeighbor(user)
         #
-        # now get the ratings for the user
-        #
         userRatings = self.data[user]
-        #
-        # determine the total distance
+
         totalDistance = 0.0
         for i in range(self.k):
             totalDistance += nearest[i][1]
-        # now iterate through the k nearest neighbors
-        # accumulating their ratings
         for i in range(self.k):
-            # compute slice of pie
             weight = nearest[i][1] / totalDistance
-            # get the name of the person
             name = nearest[i][0]
-            # get the ratings for this person
             neighborRatings = self.data[name]
-            # get the name of the person
-            # now find bands neighbor rated that user didn't
             for artist in neighborRatings:
                 if not artist in userRatings:
                     if artist not in recommendations:
@@ -224,7 +253,7 @@ class Recommender:
                         recommendations[artist] = (recommendations[artist]
                                                    + neighborRatings[artist]
                                                    * weight)
-        # now make list from dictionary
+
         recommendations = list(recommendations.items())
         recommendations = [(self.convertProductID2name(k), v)
                            for (k, v) in recommendations]
@@ -236,8 +265,9 @@ class Recommender:
 
 
 if __name__ == '__main__':
-    r = Recommender()
+    choices = {0: 'manhattan', 1: 'euclidean', 2: 'pearson', 3: 'cosine_similarity'}
+    r = Recommender(metric=choices[0])
 
-    r.loadBookDB('/Users/reza/Downloads/BX-dump/')
+    r.loadBookDB('data/')
     print(r.recommend('171118'))
     print(r.userRatings('171118', 5))

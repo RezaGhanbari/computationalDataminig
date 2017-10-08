@@ -211,6 +211,8 @@ class Recommender:
             weight = nearest[i][1] / totalDistance
             # get the name of the person
             name = nearest[i][0]
+
+
             # get the ratings for this person
             neighborRatings = self.data[name]
             # get the name of the person

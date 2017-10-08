@@ -149,7 +149,6 @@ class Recommender:
             self.userid2name[userid] = value
             self.username2id[location] = userid
         f.close()
-        print(i)
 
     def manhattan(self, rating1, rating2):
         distance = 0
@@ -265,9 +264,34 @@ class Recommender:
 
 
 if __name__ == '__main__':
-    choices = {0: 'manhattan', 1: 'euclidean', 2: 'pearson', 3: 'cosine_similarity'}
-    r = Recommender(metric=choices[0])
+    
+    r0 = Recommender(metric='manhattan')
 
-    r.loadBookDB('data/')
-    print(r.recommend('171118'))
-    print(r.userRatings('171118', 5))
+    r0.loadBookDB('data/')
+    print(r0.recommend('180571'))
+    print(r0.userRatings('180571', 5))
+
+    print('\n****************************\n')
+
+    r1 = Recommender(metric='euclidean')
+
+    r1.loadBookDB('data/')
+    print(r1.recommend('180571'))
+    print(r1.userRatings('180571', 5))
+
+    print('\n****************************\n')
+
+    r2 = Recommender(metric='pearson')
+
+    r2.loadBookDB('data/')
+    print(r2.recommend('180571'))
+    print(r2.userRatings('180571', 5))
+
+    print('\n****************************\n')
+
+    r3 = Recommender(metric='cosine_similarity')
+
+    r3.loadBookDB('data/')
+    print(r3.recommend('180571'))
+    print(r3.userRatings('180571', 5))
+

@@ -1,0 +1,45 @@
+[('Gottes Werk Und Teufels Beitrag by John Irving', 10.0), ('Die Taube by Patrick Suskind', 10.0), ('F??¼r immer und ewig. Eine Art Reigen. by Doris D??¶rrie', 10.0), ('Der Hahn ist tot. Roman. by Ingrid Noll', 10.0), ('Die Apothekerin by Ingrid Noll', 10.0)]
+Ratings for bielefeld, nordrhein-westfalen, germany
+27
+Die Unertragliche Leichtigkeit des Seins...The Unbearable Lightness of Being by Milan Kundera	10
+Die Haut und die Maske. by Jesus Diaz	9
+Lauf, Jane, lauf. Roman. by Joy Fielding	8
+3453006976	8
+Das t??¤gliche Nichts. by Zoe Valdes	7
+None
+
+****************************
+
+[('Gottes Werk Und Teufels Beitrag by John Irving', 10.0), ('Die Taube by Patrick Suskind', 10.0), ('F??¼r immer und ewig. Eine Art Reigen. by Doris D??¶rrie', 10.0), ('Der Hahn ist tot. Roman. by Ingrid Noll', 10.0), ('Die Apothekerin by Ingrid Noll', 10.0)]
+Ratings for bielefeld, nordrhein-westfalen, germany
+27
+Die Unertragliche Leichtigkeit des Seins...The Unbearable Lightness of Being by Milan Kundera	10
+Die Haut und die Maske. by Jesus Diaz	9
+Lauf, Jane, lauf. Roman. by Joy Fielding	8
+3453006976	8
+Das t??¤gliche Nichts. by Zoe Valdes	7
+None
+
+****************************
+
+[('MARBLE HEART by Gretta Mulrooney', 10.0), ('0006481213', 10.0), ('0006490344', 10.0), ('Rogue Lion Safaris by Simon Barnes', 10.0), ('0006512046', 10.0)]
+Ratings for bielefeld, nordrhein-westfalen, germany
+27
+Die Unertragliche Leichtigkeit des Seins...The Unbearable Lightness of Being by Milan Kundera	10
+Die Haut und die Maske. by Jesus Diaz	9
+Lauf, Jane, lauf. Roman. by Joy Fielding	8
+3453006976	8
+Das t??¤gliche Nichts. by Zoe Valdes	7
+None
+
+****************************
+
+[('Venezianisches Finale. Commissario Brunettis erster Fall. by Donna Leon', array([[ 8.]])), ('Die Tote Ohne Namen by Patricia Cornwell', array([[ 8.]])), ('Die Schandmaske. by Minette Walters', array([[ 8.]])), ('0552149020', array([[ 7.]])), ('Blackberry Wine by Joanne Harris', array([[ 7.]]))]
+Ratings for bielefeld, nordrhein-westfalen, germany
+27
+Die Unertragliche Leichtigkeit des Seins...The Unbearable Lightness of Being by Milan Kundera	10
+Die Haut und die Maske. by Jesus Diaz	9
+Lauf, Jane, lauf. Roman. by Joy Fielding	8
+3453006976	8
+Das t??¤gliche Nichts. by Zoe Valdes	7
+None

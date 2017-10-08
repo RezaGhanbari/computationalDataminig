@@ -38,8 +38,8 @@ users = {"Angelica": {"Blues Traveler": 3.5, "Broken Bells": 2.0,
          }
 
 
-class recommender:
-    def __init__(self, data, k=1, metric='pearson', n=5):
+class Recommender:
+    def __init__(self, data={}, k=1, metric='pearson', n=5):
         """ initialize recommender
         currently, if data is dictionary the recommender is initialized
         to it.
@@ -85,8 +85,10 @@ class recommender:
             print("%s\t%i" % (rating[0], rating[1]))
 
     def loadBookDB(self, path=''):
-        """loads the BX book dataset. Path is where the BX files are
-        located"""
+        """
+        loads the BX book dataset. Path is where the BX files are
+        located
+        """
         self.data = {}
         i = 0
         #
@@ -231,3 +233,11 @@ class recommender:
                              reverse=True)
         # Return the first n items
         return recommendations[:self.n]
+
+
+if __name__ == '__main__':
+    r = Recommender()
+
+    r.loadBookDB('/Users/reza/Downloads/BX-dump/')
+    print(r.recommend('171118'))
+    print(r.userRatings('171118', 5))
